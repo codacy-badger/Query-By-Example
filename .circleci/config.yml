@@ -26,7 +26,7 @@ jobs:
       - run:
           name: Create Scratch Org
           command: |
-            openssl enc -aes-256-cbc -nosalt -k $KEY -iv $IV -in assets/server.key.enc -out assets/server.key -d
+            openssl enc -aes-256-cbc -nosalt -in assets/server.key.enc -out assets/server.key -K ${KEY} -iv ${IV} -d
             node_modules/sfdx-cli/bin/run force:auth:jwt:grant --clientid $CONSUMERKEY --jwtkeyfile assets/server.key --username $USERNAME --setdefaultdevhubusername -a DevHub
             echo "Creating scratch org with definition $SCRATCH_DEF"
             node_modules/sfdx-cli/bin/run force:org:create -v DevHub -s -f "config/$SCRATCH_DEF" -a scratch
