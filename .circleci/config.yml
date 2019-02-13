@@ -91,4 +91,3 @@ workflows:
   test_and_static:
     jobs:
       - build
-      - static-analysis
